@@ -77,14 +77,20 @@ html.ysl-hide-watched ytd-rich-item-renderer.ysl-watched {
   display: none !important;
 }
 
+/* YouTube pins its menu button to the top-right corner of the metadata block
+   (position: absolute; top: -6px; right: -10px), so the check button is pinned the
+   same way, just left of it, and the block gets room so titles do not run under them. */
+html.ysl-on-subs .ytLockupMetadataViewModelHasMenuButton {
+  padding-right: 84px !important;
+}
+
 .ysl-mark {
   display: none;
-  flex: 0 0 auto;
-  align-self: flex-start;
+  position: absolute;
+  top: -6px;
+  right: 36px;
   width: 36px;
   height: 36px;
-  /* Pushes the button (and the menu after it) to the right edge of the row. */
-  margin: 0 12px 0 auto;
   padding: 8px;
   border: 1px solid var(--ysl-border);
   border-radius: 50%;
