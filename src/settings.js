@@ -2,4 +2,5 @@
 const DEFAULT_SETTINGS = {
   listLayout: true,
   hideShorts: true,
+  hideWatched: true,
 };

@@ -52,3 +52,224 @@ html.ysl-list ytd-rich-shelf-renderer:not([is-shorts]) #contents {
   flex-direction: column !important;
   align-items: stretch !important;
 }
+
+/* --- Watched videos ---------------------------------------------------- */
+
+html {
+  --ysl-fg: #0f0f0f;
+  --ysl-muted: #606060;
+  --ysl-bg: #ffffff;
+  --ysl-surface: #f2f2f2;
+  --ysl-border: rgba(0, 0, 0, 0.1);
+  --ysl-accent: #2ba640;
+}
+
+html[dark] {
+  --ysl-fg: #f1f1f1;
+  --ysl-muted: #aaaaaa;
+  --ysl-bg: #212121;
+  --ysl-surface: #3f3f3f;
+  --ysl-border: rgba(255, 255, 255, 0.1);
+  --ysl-accent: #3ea6ff;
+}
+
+html.ysl-hide-watched ytd-rich-item-renderer.ysl-watched {
+  display: none !important;
+}
+
+.ysl-mark {
+  display: none;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: 36px;
+  height: 36px;
+  /* Pushes the button (and the menu after it) to the right edge of the row. */
+  margin: 0 12px 0 auto;
+  padding: 8px;
+  border: 1px solid var(--ysl-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ysl-muted);
+  cursor: pointer;
+}
+
+html.ysl-on-subs .ysl-mark {
+  display: block;
+}
+
+.ysl-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.ysl-mark:hover {
+  background: var(--ysl-surface);
+  color: var(--ysl-fg);
+}
+
+.ysl-mark[aria-pressed='true'] {
+  border-color: var(--ysl-accent);
+  background: var(--ysl-accent);
+  color: #ffffff;
+}
+
+.ysl-panel-toggle {
+  display: none;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2100;
+  padding: 10px 16px;
+  border: 1px solid var(--ysl-border);
+  border-radius: 18px;
+  background: var(--ysl-bg);
+  color: var(--ysl-fg);
+  font: 500 14px/1 Roboto, Arial, sans-serif;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+html.ysl-on-subs .ysl-panel-toggle {
+  display: block;
+}
+
+.ysl-panel-toggle:hover {
+  background: var(--ysl-surface);
+}
+
+.ysl-panel {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  bottom: 0;
+  z-index: 2200;
+  display: flex;
+  flex-direction: column;
+  width: min(420px, 100vw);
+  border-left: 1px solid var(--ysl-border);
+  background: var(--ysl-bg);
+  color: var(--ysl-fg);
+  font-family: Roboto, Arial, sans-serif;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.3);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.2s ease, visibility 0.2s;
+}
+
+.ysl-panel.ysl-panel-open {
+  transform: none;
+  visibility: visible;
+}
+
+.ysl-panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--ysl-border);
+}
+
+.ysl-panel h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ysl-panel-close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ysl-fg);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ysl-panel-close:hover {
+  background: var(--ysl-surface);
+}
+
+.ysl-panel ol {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 8px 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.ysl-panel li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+}
+
+.ysl-panel li:hover {
+  background: var(--ysl-surface);
+}
+
+.ysl-panel li a {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 10px;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ysl-panel li img {
+  flex: 0 0 120px;
+  width: 120px;
+  height: 68px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: var(--ysl-surface);
+}
+
+.ysl-entry-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ysl-entry-title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.ysl-entry-channel {
+  color: var(--ysl-muted);
+  font-size: 12px;
+}
+
+.ysl-entry-unmark {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border: 1px solid var(--ysl-border);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ysl-fg);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ysl-entry-unmark:hover {
+  background: var(--ysl-bg);
+}
+
+.ysl-panel-empty {
+  margin: 0;
+  padding: 24px 16px;
+  color: var(--ysl-muted);
+  font-size: 14px;
+}

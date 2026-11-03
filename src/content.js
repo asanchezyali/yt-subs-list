@@ -10,6 +10,9 @@ function applyClasses() {
   const root = document.documentElement;
   root.classList.toggle('ysl-list', onSubscriptions && settings.listLayout);
   root.classList.toggle('ysl-hide-shorts', onSubscriptions && settings.hideShorts);
+  root.classList.toggle('ysl-hide-watched', onSubscriptions && settings.hideWatched);
+  root.classList.toggle('ysl-on-subs', onSubscriptions);
+  syncWatched();
 }
 
 chrome.storage.sync.get(DEFAULT_SETTINGS, (stored) => {

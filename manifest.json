@@ -2,14 +2,14 @@
   "manifest_version": 3,
   "name": "Subs List for YouTube",
   "short_name": "Subs List",
-  "version": "0.1.0",
-  "description": "Shows your YouTube subscriptions feed as a vertical list and hides Shorts there.",
+  "version": "0.2.0",
+  "description": "Shows your YouTube subscriptions feed as a vertical list, hides Shorts there, and lets you check off videos you have watched.",
   "minimum_chrome_version": "116",
   "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
-      "js": ["src/settings.js", "src/content.js"],
+      "js": ["src/settings.js", "src/watched.js", "src/content.js"],
       "css": ["src/content.css"],
       "run_at": "document_start"
     }
