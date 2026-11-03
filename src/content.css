@@ -1,0 +1,54 @@
+/*
+ * Only active while <html> has the classes set by content.js, which happens on
+ * /feed/subscriptions alone. The Home feed uses the same components and stays untouched.
+ */
+
+/* --- Hide Shorts ------------------------------------------------------- */
+
+html.ysl-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html.ysl-hide-shorts ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
+html.ysl-hide-shorts ytd-rich-item-renderer:has(a[href^='/shorts/']) {
+  display: none !important;
+}
+
+/* --- Vertical list ----------------------------------------------------- */
+
+html.ysl-list ytd-rich-grid-renderer > #contents {
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+}
+
+html.ysl-list ytd-rich-grid-renderer > #contents > ytd-rich-section-renderer {
+  width: 100% !important;
+  max-width: 1100px !important;
+}
+
+html.ysl-list ytd-rich-item-renderer {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 0 0 16px !important;
+}
+
+html.ysl-list ytd-rich-item-renderer .ytLockupViewModelVertical {
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 16px;
+}
+
+html.ysl-list ytd-rich-item-renderer .ytLockupViewModelContentImage {
+  flex: 0 0 320px !important;
+  width: 320px !important;
+  margin: 0 !important;
+}
+
+html.ysl-list ytd-rich-item-renderer .ytLockupViewModelMetadata {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Shelves inside the feed ("Most relevant") follow the same list. */
+html.ysl-list ytd-rich-shelf-renderer:not([is-shorts]) #contents {
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
